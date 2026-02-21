@@ -4,7 +4,7 @@ class Teleshelf < Formula
   desc "Export and archive Telegram channels into a static HTML reader"
   homepage "https://github.com/aprudkin/TeleShelf"
   url "https://github.com/aprudkin/TeleShelf/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "21149ef238e00ef1db2415ea31fae1f154cbdfa398a998464122da5f496ffb5c"
+  sha256 "ea34b9c78286823b299e13571ed406ea6b3cfc2bf9a46cc3621dfd0627dbb251"
   license "MIT"
 
   depends_on "go-task"
