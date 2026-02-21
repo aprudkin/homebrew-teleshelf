@@ -1,4 +1,6 @@
 class Teleshelf < Formula
+  include Language::Python::Virtualenv
+
   desc "Export and archive Telegram channels into a static HTML reader"
   homepage "https://github.com/aprudkin/TeleShelf"
   url "https://github.com/aprudkin/TeleShelf/archive/refs/tags/v0.1.0.tar.gz"
