@@ -3,8 +3,8 @@ class Teleshelf < Formula
 
   desc "Export and archive Telegram channels into a static HTML reader"
   homepage "https://github.com/aprudkin/TeleShelf"
-  url "https://github.com/aprudkin/TeleShelf/archive/refs/tags/v0.5.0.tar.gz"
-  sha256 "f26baab37e6bb007df34f746997ff124a969a242665a60a958bb9ebc7e805103"
+  url "https://github.com/aprudkin/TeleShelf/archive/refs/tags/v1.0.0.tar.gz"
+  sha256 "9a2f411fb4091bc4d17828bff0a6eba57435bc2144610f6ac11d2941f6185934"
   license "MIT"
 
   depends_on "go-task"
@@ -12,12 +12,12 @@ class Teleshelf < Formula
 
   resource "jinja2" do
     url "https://files.pythonhosted.org/packages/af/92/b3130cbbf5591acf9ade8708c365f3238046ac7cb8ccba6e81abccb0ccff/jinja2-3.1.5.tar.gz"
-    sha256 "f26baab37e6bb007df34f746997ff124a969a242665a60a958bb9ebc7e805103"
+    sha256 "9a2f411fb4091bc4d17828bff0a6eba57435bc2144610f6ac11d2941f6185934"
   end
 
   resource "markupsafe" do
     url "https://files.pythonhosted.org/packages/b2/97/5d42485e71dfc078108a86d6de8fa46db44a1a9295e89c5d6d4a06e23a62/markupsafe-3.0.2.tar.gz"
-    sha256 "f26baab37e6bb007df34f746997ff124a969a242665a60a958bb9ebc7e805103"
+    sha256 "9a2f411fb4091bc4d17828bff0a6eba57435bc2144610f6ac11d2941f6185934"
   end
 
   def install
