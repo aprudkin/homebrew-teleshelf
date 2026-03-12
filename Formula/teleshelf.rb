@@ -1,49 +1,26 @@
 class Teleshelf < Formula
-  include Language::Python::Virtualenv
-
-  desc "Export and archive Telegram channels into a static HTML reader"
+  desc "Telegram channel archive & reader — Go server with Svelte SPA"
   homepage "https://github.com/aprudkin/TeleShelf"
   url "https://github.com/aprudkin/TeleShelf/archive/refs/tags/v1.0.0.tar.gz"
   sha256 "9a2f411fb4091bc4d17828bff0a6eba57435bc2144610f6ac11d2941f6185934"
   license "MIT"
 
-  depends_on "go-task"
-  depends_on "python@3"
-
-  resource "jinja2" do
-    url "https://files.pythonhosted.org/packages/af/92/b3130cbbf5591acf9ade8708c365f3238046ac7cb8ccba6e81abccb0ccff/jinja2-3.1.5.tar.gz"
-    sha256 "9a2f411fb4091bc4d17828bff0a6eba57435bc2144610f6ac11d2941f6185934"
-  end
-
-  resource "markupsafe" do
-    url "https://files.pythonhosted.org/packages/b2/97/5d42485e71dfc078108a86d6de8fa46db44a1a9295e89c5d6d4a06e23a62/markupsafe-3.0.2.tar.gz"
-    sha256 "9a2f411fb4091bc4d17828bff0a6eba57435bc2144610f6ac11d2941f6185934"
-  end
+  depends_on "go" => :build
+  depends_on "node" => :build
 
   def install
-    venv = virtualenv_create(libexec, "python3")
-    venv.pip_install resources
-
-    # Install project files
-    libexec.install "Taskfile.yml"
-    libexec.install "scripts"
-    libexec.install "requirements.txt"
-
-    # Create wrapper script
-    (bin/"teleshelf").write <<~BASH
-      #!/bin/bash
-      export TELESHELF_HOME="${TELESHELF_HOME:-$HOME/TeleShelf}"
-      export TELESHELF_INSTALL_DIR="#{libexec}"
-      export PATH="#{libexec}/bin:$PATH"
-      mkdir -p "$TELESHELF_HOME/downloads" "$TELESHELF_HOME/reader"
-      exec task --taskfile "#{libexec}/Taskfile.yml" --dir "$TELESHELF_HOME" "$@"
-    BASH
+    system "npm", "ci", "--prefix", "frontend"
+    system "npm", "run", "build", "--prefix", "frontend"
+    system "go", "build", "-o", bin/"teleshelf", "./cmd/teleshelf"
   end
 
   def caveats
     <<~EOS
       TeleShelf stores channel data in ~/TeleShelf/ by default.
       Override with: export TELESHELF_HOME=/your/path
+
+      Start the server:
+        teleshelf serve
 
       You also need tdl for Telegram export:
         brew install iyear/tap/tdl
@@ -55,6 +32,6 @@ class Teleshelf < Formula
   end
 
   test do
-    assert_match "add-channel", shell_output("#{bin}/teleshelf --list")
+    assert_match "teleshelf", shell_output("#{bin}/teleshelf --help")
   end
 end
