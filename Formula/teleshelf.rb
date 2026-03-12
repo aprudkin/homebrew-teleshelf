@@ -1,8 +1,8 @@
 class Teleshelf < Formula
   desc "Telegram channel archive & reader — Go server with Svelte SPA"
   homepage "https://github.com/aprudkin/TeleShelf"
-  url "https://github.com/aprudkin/TeleShelf/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "9a2f411fb4091bc4d17828bff0a6eba57435bc2144610f6ac11d2941f6185934"
+  url "https://github.com/aprudkin/TeleShelf/archive/refs/tags/v1.0.1.tar.gz"
+  sha256 "e15cf44b6a6ddd162b945560a0fe906b034bad195cf1d4882bad24bb16c1d3c2"
   license "MIT"
 
   depends_on "go" => :build
